@@ -27,7 +27,7 @@ let appData = {
 //         b = prompt('Во сколько обойдется?', '');
     
 //     if ( (typeof(a))=== 'string' && (typeof(a)) != null && (typeof(b)) != null
-//      && a != '' && b != '' && a.lenth < 50)  {
+//      && a != '' && b != '' && a.length < 50)  {
 
 //       appData.expenses[a] = b;
 //     }     
@@ -41,7 +41,7 @@ let appData = {
 //           b = prompt('Во сколько обойдется?', '');
     
 //       if ( (typeof(a))=== 'string' && (typeof(a)) != null && (typeof(b)) != null
-//        && a != '' && b != '' && a.lenth < 50)  {
+//        && a != '' && b != '' && a.length < 50)  {
 
 //       appData.expenses[a] = b;
 //     } 
@@ -55,7 +55,7 @@ do {
       b = prompt('Во сколько обойдется?', '');
     
   if ( (typeof(a))=== 'string' && (typeof(a)) != null && (typeof(b)) != null
-    && a != '' && b != '' && a.lenth < 50)  {
+    && a != '' && b != '' && a.length < 50)  {
 
     appData.expenses[a] = b;
     } 
