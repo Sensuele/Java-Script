@@ -83,7 +83,7 @@ let appData = {
 
 };
 
-// appData.chooseIncome();
+appData.chooseIncome();
 // console.log(appData);
 
 for (let key in appData) {
