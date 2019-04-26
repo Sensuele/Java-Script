@@ -1,20 +1,28 @@
 'use strict';
 
-// let week = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
-//     toDay = 'ср';
+let week = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-// for (let i = 0; i < 7; i++) {
-//   if (i == toDay) {
+let content = '';
 
-//   }
-// }
-
-nextPrime:
-  for (let i = 2; i <= 100; i++) {
-
-    for (let j = 2; j < i; j++) {
-      if (i % j == 0) continue nextPrime;
-    }
-    console.log(i); 
-   
+for (let i=0; i<7; i++){
+  let day = week[i];
+  if (i+1 === new Date().getDay()){
+    day = '<em>' + day + '</em>';
   }
+  if ( i === 5 || i === 6 ){
+    day = '<b>' + day + '</b>';
+  }
+  
+  content += day + '<br>';
+}
+
+document.write(content);
+
+
+let arr = ['2347', '7725', '9327', '3923', '1234', '7813', '3377'];
+
+for (let i=0; i<arr.length; i++){
+  if (arr[i][0] === '3' || arr[i][0] === '7'){
+    console.log(arr[i]);
+  }
+}
