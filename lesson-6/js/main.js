@@ -14,6 +14,7 @@ let startBtn = document.getElementById('start'),
     yearSavingsValue = document.getElementsByClassName('yearsavings-value') [0],
 
 
+
     // Получить поля(input) c обязательными расходами через класс
     expensesItem = document.getElementsByClassName('expenses-item'),
 
@@ -22,6 +23,7 @@ let startBtn = document.getElementById('start'),
     expensesBtn = document.getElementsByTagName('button') [0],
     optionalExpensesBtn = document.getElementsByTagName('button') [1],
     countBtn = document.getElementsByTagName('button') [2],
+    inputs = document.getElementsByTagName('input'),
 
     // Получить поля для ввода необязательных расходов (optionalexpenses-item) при помощи querySelectorAll
     optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item'),
@@ -154,7 +156,9 @@ let appData = {
 for (let i = 0; i < allBtn.length - 1; i++) {
     allBtn[i].disabled = true;
     allBtn[i].style.backgroundImage = 'none';
-  }
+    
+}  
+
 startBtn.addEventListener('click', function() {
     for (let i = 0; i < allBtn.length - 1; i++) {
         allBtn[i].disabled = false;
@@ -162,4 +166,12 @@ startBtn.addEventListener('click', function() {
       } 
 });
 
-
+// Проверяем на заполнение инпутов
+expensesBtn.addEventListener('input', function() {
+    for (let j = 0; j < expensesItem.length; j++) {
+        if (expensesItem[j].value !='') {
+            expensesBtn.disabled = false;
+            expensesBtn.style.backgroundImage = '';
+        }
+    }
+});
