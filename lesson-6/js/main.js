@@ -16,7 +16,8 @@ let startBtn = document.getElementById('start'),
 
 
     // Получить поля(input) c обязательными расходами через класс
-    expensesItem = document.getElementsByClassName('expenses-item'),
+    expensesItem = document.querySelectorAll('.expenses-item'),
+    
 
     // Получить кнопки “Утвердить” и “Рассчитать” через Tag
     allBtn = document.getElementsByTagName('button'),
@@ -36,7 +37,7 @@ let startBtn = document.getElementById('start'),
     yearValue = document.querySelector('.year-value'),
     monthValue = document.querySelector('.month-value'),
     dayValue = document.querySelector('.day-value');
-
+    console.log(expensesItem)
 let money, time;
 
 
@@ -167,11 +168,21 @@ startBtn.addEventListener('click', function() {
 });
 
 // Проверяем на заполнение инпутов
-expensesBtn.addEventListener('input', function() {
-    for (let j = 0; j < expensesItem.length; j++) {
-        if (expensesItem[j].value !='') {
+// expensesBtn.addEventListener('input', function() {
+//     for (let j = 0; j < expensesItem.length; j++) {
+//         if (expensesItem[j].value !== '') {
+//             expensesBtn.disabled = false;
+//             expensesBtn.style.backgroundImage = '';
+//         }
+//     }
+// });
+
+for (let i = 0; i < expensesItem.length; i++) {
+    console.log(expensesItem[i])
+    expensesItem[i].addEventListener('input', function() {
+        if (expensesItem[0].value.length > 0 && expensesItem[1].value.length > 0 && expensesItem[2].value.length > 0 && expensesItem[3].value.length > 0) {
             expensesBtn.disabled = false;
             expensesBtn.style.backgroundImage = '';
         }
-    }
-});
+    });
+}
