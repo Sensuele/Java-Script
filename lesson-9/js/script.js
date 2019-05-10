@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   // Timer
-  let deadline = '2019-05-07';
+  let deadline = '2019-05-09';
 
   function getTimeRemaining(endtime) {
     let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -62,18 +62,53 @@ window.addEventListener('DOMContentLoaded', function() {
       hours.textContent = t.hours;
       minutes.textContent = t.minutes;
       seconds.textContent = t.seconds;
-     
+
+      // подставляем 0 перед значениями, которые состоят из одной цифры
+      if (hours.textContent < 10){
+      hours.textContent = '0' + t.hours;
+      }
+      if (minutes.textContent < 10){
+        minutes.textContent = '0' + t.minutes;
+      }
+      if (seconds.textContent < 10){
+        seconds.textContent = '0' + t.seconds;
+      }  
+      // Изменить скрипт так, что если дата уже прошла выводилось: 00:00:00 
       if (t.total <= 0) {
         hours.textContent = "00";
         minutes.textContent = "00";
         seconds.textContent = "00";
         clearInterval(timeInterval);
-      } else {
-        hours.textContent = '0' + t.hours;
-        seconds.textContent = '0' + t.seconds;
       } 
     }     
   }
   setClock('timer', deadline);
   
+
+  // Modal
+
+  let more = document.querySelector('.more'),
+      overlay = document.querySelector('.overlay'),
+      close = document.querySelector('.popup-close'),
+      description = document.querySelectorAll('.description-btn');
+
+  more.addEventListener('click', function() {
+    overlay.style.display = 'block';
+    this.classList.add('more-splash');
+    document.body.style.overflow = 'hidden';
+  });   
+  // Привязать модальное окно к кнопкам “Узнать подробнее” в табах
+  for (let i = 0; i < description.length; i++){
+    description[i].addEventListener('click', function() {
+      overlay.style.display = 'block';
+      this.classList.add('more-splash');
+      document.body.style.overflow = 'hidden';
+    }); 
+  }
+   
+  close.addEventListener('click', function() {
+    overlay.style.display = 'none';
+    more.classList.remove('more-splash');
+    document.body.style.overflow = '';
+  });
 });
