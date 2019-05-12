@@ -59,16 +59,16 @@
 // console.log(double(3));
 // console.log(double(10));
 
-let btn = document.querySelector('button');
+// let btn = document.querySelector('button');
 
-btn.addEventListener('click', function() {
-  console.log(this);
-  this.style.backgroundColor = 'red';
-  function showThis() {
-    console.log(this);
-  }
-  showThis();
-})
+// btn.addEventListener('click', function() {
+//   console.log(this);
+//   this.style.backgroundColor = 'red';
+//   function showThis() {
+//     console.log(this);
+//   }
+//   showThis();
+// })
 
 //  1) просто вызов функции/ undefined 
 //  2) метод объекта - this = объект
