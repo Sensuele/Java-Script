@@ -94,14 +94,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
   more.addEventListener('click', () => {
     overlay.style.display = 'block';
-    this.classList.add('more-splash');
+    more.classList.add('more-splash');
     document.body.style.overflow = 'hidden';
   });   
   // Привязать модальное окно к кнопкам “Узнать подробнее” в табах
   for (let i = 0; i < description.length; i++){
     description[i].addEventListener('click', () => {
       overlay.style.display = 'block';
-      this.classList.add('more-splash');
+      description[i].classList.add('more-splash');
       document.body.style.overflow = 'hidden';
     }); 
   }
@@ -115,9 +115,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // Form
 
   let message = {
-    loading: 'Загрузка...',
-    success: 'Спасибо! Скоро мы с вами свяжемся!',
-    failure: 'Что-то пошло не так...'
+    loading: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/loader.gif" alt=""> </div>',
+    success: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/checked.png" alt=""> </div>',
+    failure: '<div style="filter: invert(1); text-align: center; margin-top: 10px"><img src="img/icons/fail-1.png" alt=""> </div>'
   };
 
   let form = document.querySelector('.main-form'),
@@ -198,9 +198,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // валидация телефона
   let tels = document.querySelectorAll('input[type="tel"]');
   
-  [].forEach.call(tels, (el =>{
+  [].forEach.call(tels, (el => {
     el.addEventListener('input', (e) =>{      
-      if ( /^\+?[()\d \-]*$/.test(el.value) || el.value === '' ){
+      if ( /^\+?[0-9]*$/.test(el.value) || el.value === '' ){
         el.oldValue = el.value;
       } else {
         el.value = el.oldValue;
