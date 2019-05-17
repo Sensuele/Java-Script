@@ -176,7 +176,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let tels = document.querySelectorAll('input[type="tel"]');
   
   [].forEach.call(tels, (el => {
-    el.addEventListener('input', (e) =>{      
+    el.addEventListener('input', (e) => {      
       if ( /^\+?[0-9]*$/.test(el.value) || el.value === '' ){
         el.oldValue = el.value;
       } else {
