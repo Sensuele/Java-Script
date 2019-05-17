@@ -244,7 +244,7 @@ window.addEventListener('DOMContentLoaded', () => {
         personsSum = +this.value;
         total = (daysSum + personsSum)*4000;
 
-        if(restDays.value == '') {
+        if(restDays.value == '' || persons.value == 0 ) {  // исправлен баг
           totalValue.innerHTML = 0;
         } else {
           totalValue.innerHTML = total;
@@ -255,12 +255,13 @@ window.addEventListener('DOMContentLoaded', () => {
         daysSum = +this.value;
         total = (daysSum + personsSum)*4000;
 
-        if(persons.value == '' ) {
+        if(persons.value == '' || restDays.value == 0) {  // исправлен баг
           totalValue.innerHTML = 0;
         } else {
           totalValue.innerHTML = total;
         }
       });
+     
 
       place.addEventListener('change', function() {
         if (restDays.value == '' || persons.value == '') {
