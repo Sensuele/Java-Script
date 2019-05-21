@@ -200,6 +200,8 @@ function form() {
           request.send(data);
         });
       } // End postData
+      setTimeout(() => { form.lastChild.remove(); }, 5000);
+      setTimeout(() => { contactForm.lastChild.remove(); }, 5000);
 
       function clearInput() {
         for (let i = 0; i < input.length; i++) {
@@ -212,9 +214,11 @@ function form() {
       .catch(() => (statusMessage.innerHTML = message.failure))
       .then(clearInput);
     });
+    
   }    
   sendForm(form);
   sendForm(contactForm);
+  
 }
 
 module.exports = form;
