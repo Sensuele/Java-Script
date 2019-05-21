@@ -104,7 +104,7 @@ function calc() {
 
   totalValue.innerHTML = 0;
 
-  persons.addEventListener('change', function() {
+  persons.addEventListener('change', () => {
     personsSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -115,7 +115,7 @@ function calc() {
     }
   });
 
-  restDays.addEventListener('change', function() {
+  restDays.addEventListener('change', () => {
     daysSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -127,7 +127,7 @@ function calc() {
   });
  
 
-  place.addEventListener('change', function() {
+  place.addEventListener('change', () => {
     if (restDays.value == '' || persons.value == '') {
       totalValue.innerHTML = 0;
     } else {
@@ -165,7 +165,7 @@ function form() {
   };
 
   let form = document.querySelector('.main-form'),
-      input = form.getElementsByTagName('input'),
+      input = document.getElementsByTagName('input'),
       contactForm = document.getElementById('form'),
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
@@ -298,16 +298,16 @@ function slider() {
     showSlides(slideIndex = n);
   }
 
-  prev.addEventListener('click', function() {
+  prev.addEventListener('click', () => {
     plusSlides(-1);
   });
-  next.addEventListener('click', function() {
+  next.addEventListener('click', () => {
     plusSlides(1);
   });
 
-  dotsWrap.addEventListener('click', function(event) {
+  dotsWrap.addEventListener('click', (e) => {
     for (let i = 0; i < dots.length + 1; i++) {
-      if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
+      if (e.target.classList.contains('dot') && e.target == dots[i-1]) {
         currentSlide(i);
       }
     }

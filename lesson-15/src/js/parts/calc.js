@@ -9,7 +9,7 @@ function calc() {
 
   totalValue.innerHTML = 0;
 
-  persons.addEventListener('change', function() {
+  persons.addEventListener('change', () => {
     personsSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -20,7 +20,7 @@ function calc() {
     }
   });
 
-  restDays.addEventListener('change', function() {
+  restDays.addEventListener('change', () => {
     daysSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -32,7 +32,7 @@ function calc() {
   });
  
 
-  place.addEventListener('change', function() {
+  place.addEventListener('change', () => {
     if (restDays.value == '' || persons.value == '') {
       totalValue.innerHTML = 0;
     } else {

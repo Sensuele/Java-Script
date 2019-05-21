@@ -162,6 +162,7 @@ window.addEventListener('DOMContentLoaded', () => {
           input[i].value = '';
         }
       }
+      
       postData(formData)
       .then(() => (statusMessage.innerHTML = message.loading))
       .then(() => (statusMessage.innerHTML = message.success))

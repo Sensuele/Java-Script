@@ -6,7 +6,7 @@ function form() {
   };
 
   let form = document.querySelector('.main-form'),
-      input = form.getElementsByTagName('input'),
+      input = document.getElementsByTagName('input'),
       contactForm = document.getElementById('form'),
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
