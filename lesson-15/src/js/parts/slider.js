@@ -1,4 +1,4 @@
-function slider() {
+let slider = () => {
   let slideIndex = 1,
       slides = document.querySelectorAll('.slider-item'),
       prev = document.querySelector('.prev'),
@@ -22,13 +22,13 @@ function slider() {
     dots[slideIndex - 1].classList.add('dot-active'); 
   }    
 
-  function plusSlides(n) {
+  let plusSlides = (n) => {
     showSlides(slideIndex += n);
-  }
+  };
 
-  function currentSlide(n) {
+  let currentSlide = (n) => {
     showSlides(slideIndex = n);
-  }
+  };
 
   prev.addEventListener('click', () => {
     plusSlides(-1);
@@ -45,6 +45,6 @@ function slider() {
     }
   });
 
-}
+};
 
 module.exports = slider;

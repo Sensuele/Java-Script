@@ -1,4 +1,4 @@
-function form() {
+let form = () => {
   let message = {
     loading: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/loader.gif" alt=""> </div>',
     success: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/checked.png" alt=""> </div>',
@@ -11,16 +11,16 @@ function form() {
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
 
-  function sendForm(elem) {
+  let sendForm = (elem) => {
     elem.addEventListener('submit', (e) => {
       e.preventDefault();
       elem.appendChild(statusMessage);
 
       let formData = new FormData(elem);
 
-      function postData(data) {
+      let postData = (data) => {
 
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
           let request = new XMLHttpRequest();
 
           request.open('POST', 'server.php');
@@ -40,15 +40,15 @@ function form() {
           };
           request.send(data);
         });
-      } // End postData
+      }; // End postData
       setTimeout(() => { form.lastChild.remove(); }, 5000);
       setTimeout(() => { contactForm.lastChild.remove(); }, 5000);
 
-      function clearInput() {
+      let clearInput = () => {
         for (let i = 0; i < input.length; i++) {
           input[i].value = '';
         }
-      }
+      };
       postData(formData)
       .then(() => (statusMessage.innerHTML = message.loading))
       .then(() => (statusMessage.innerHTML = message.success))
@@ -56,10 +56,10 @@ function form() {
       .then(clearInput);
     });
     
-  }    
+  };    
   sendForm(form);
   sendForm(contactForm);
   
-}
+};
 
 module.exports = form;

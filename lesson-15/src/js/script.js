@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', function () {
       slider = require('./parts/slider.js'),
       timer = require('./parts/timer.js'),
       modal = require('./parts/modal.js'),
-      valid = require('./parts/valid.js');
+      mask = require('./parts/mask.js');
 
   tabs();
   calc();
@@ -14,5 +14,5 @@ window.addEventListener('DOMContentLoaded', function () {
   slider();
   timer();
   modal();
-  valid();
+  mask();
 });

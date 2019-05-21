@@ -104,7 +104,7 @@ function calc() {
 
   totalValue.innerHTML = 0;
 
-  persons.addEventListener('change', () => {
+  persons.addEventListener('input', function() {
     personsSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -115,7 +115,7 @@ function calc() {
     }
   });
 
-  restDays.addEventListener('change', () => {
+  restDays.addEventListener('input', function() {
     daysSum = +this.value;
     total = (daysSum + personsSum)*4000;
 
@@ -127,7 +127,7 @@ function calc() {
   });
  
 
-  place.addEventListener('change', () => {
+  place.addEventListener('input', function() {
     if (restDays.value == '' || persons.value == '') {
       totalValue.innerHTML = 0;
     } else {
@@ -157,7 +157,7 @@ module.exports = calc;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function form() {
+let form = () => {
   let message = {
     loading: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/loader.gif" alt=""> </div>',
     success: '<div style="text-align: center; margin-top: 10px"><img src="img/icons/checked.png" alt=""> </div>',
@@ -170,16 +170,16 @@ function form() {
       statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
 
-  function sendForm(elem) {
+  let sendForm = (elem) => {
     elem.addEventListener('submit', (e) => {
       e.preventDefault();
       elem.appendChild(statusMessage);
 
       let formData = new FormData(elem);
 
-      function postData(data) {
+      let postData = (data) => {
 
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
           let request = new XMLHttpRequest();
 
           request.open('POST', 'server.php');
@@ -199,15 +199,15 @@ function form() {
           };
           request.send(data);
         });
-      } // End postData
+      }; // End postData
       setTimeout(() => { form.lastChild.remove(); }, 5000);
       setTimeout(() => { contactForm.lastChild.remove(); }, 5000);
 
-      function clearInput() {
+      let clearInput = () => {
         for (let i = 0; i < input.length; i++) {
           input[i].value = '';
         }
-      }
+      };
       postData(formData)
       .then(() => (statusMessage.innerHTML = message.loading))
       .then(() => (statusMessage.innerHTML = message.success))
@@ -215,13 +215,72 @@ function form() {
       .then(clearInput);
     });
     
-  }    
+  };    
   sendForm(form);
   sendForm(contactForm);
   
-}
+};
 
 module.exports = form;
+
+/***/ }),
+
+/***/ "./src/js/parts/mask.js":
+/*!******************************!*\
+  !*** ./src/js/parts/mask.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function mask() {
+  let setCursorPosition = (pos, elem) => {
+      elem.focus();
+  
+      if (elem.setSelectionRange) {
+          elem.setSelectionRange(pos, pos);
+      } else if (elem.createTextRange) {
+          let range = elem.createTextRange();
+  
+          range.collapse(true);
+          range.moveEnd('character', pos);
+          range.moveStart('character', pos);
+          range.select();
+      }
+  };
+  
+  function Mask(event) {
+      let matrix = '+7(___) ___ __ __',
+          i = 0,
+          def = matrix.replace(/\D/g, ''),
+          val = this.value.replace(/\D/g, '');
+  
+      if (def.length >= val.length) {
+          val = def;
+      }
+  
+      this.value = matrix.replace(/./g, function(a) {
+          return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
+      });
+  
+      if (event.type == 'blur') {
+          if (this.value.length == 2) {
+              this.value = '';
+          }
+      } else {
+          setCursorPosition(this.value.length, this);
+      }
+  }
+      
+  let input = document.querySelectorAll('[type="tel"]');
+  
+  for (let i = 0; i < input.length; i++) {
+      input[i].addEventListener('input', Mask, false);
+      input[i].addEventListener('focus', Mask, false);
+      input[i].addEventListener('blur', Mask, false);
+  }
+}
+
+module.exports = mask;
 
 /***/ }),
 
@@ -270,7 +329,7 @@ module.exports = modal;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function slider() {
+let slider = () => {
   let slideIndex = 1,
       slides = document.querySelectorAll('.slider-item'),
       prev = document.querySelector('.prev'),
@@ -294,13 +353,13 @@ function slider() {
     dots[slideIndex - 1].classList.add('dot-active'); 
   }    
 
-  function plusSlides(n) {
+  let plusSlides = (n) => {
     showSlides(slideIndex += n);
-  }
+  };
 
-  function currentSlide(n) {
+  let currentSlide = (n) => {
     showSlides(slideIndex = n);
-  }
+  };
 
   prev.addEventListener('click', () => {
     plusSlides(-1);
@@ -317,7 +376,7 @@ function slider() {
     }
   });
 
-}
+};
 
 module.exports = slider;
 
@@ -330,25 +389,25 @@ module.exports = slider;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function tabs() {
+  let tabs = () => {
   let tab = document.querySelectorAll('.info-header-tab'),
       info = document.querySelector('.info-header'),   
       tabContent = document.querySelectorAll('.info-tabcontent');
 
-  function hideTabContent(a) {
+  let hideTabContent = (a) => {
     for (let i = a; i < tabContent.length; i++) {
       tabContent[i].classList.remove('show');
       tabContent[i].classList.add('hide');
     }
-  }   
+  };   
   hideTabContent(1); 
 
-  function showTabContent(b) {
+  let showTabContent = (b) => {
     if (tabContent[b].classList.contains('hide')) {
         tabContent[b].classList.remove('hide');
         tabContent[b].classList.add('show');
     }
-  }
+  };
 
   info.addEventListener('click', (e) => {
     let target = e.target;
@@ -362,7 +421,7 @@ function tabs() {
       }
     }
   });
-}
+};
 
 module.exports = tabs;
 
@@ -375,10 +434,10 @@ module.exports = tabs;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function timer() {
-  let deadline = '2019-05-09';
+let timer = () => {
+  let deadline = '2019-05-24';
 
-  function getTimeRemaining(endtime) {
+  let getTimeRemaining = (endtime) => {
     let t = Date.parse(endtime) - Date.parse(new Date()),
     seconds = Math.floor((t/1000) % 60),
     minutes = Math.floor((t/1000/60) % 60),
@@ -390,9 +449,9 @@ function timer() {
       'minutes' : minutes,
       'seconds' : seconds
     };
-  }
+  };
 
-  function setClock(id, endtime) {
+  let setClock = (id, endtime) => {
     let timer = document.getElementById(id),
         hours = timer.querySelector('.hours'),
         minutes = timer.querySelector('.minutes'),
@@ -431,27 +490,6 @@ module.exports = timer;
 
 /***/ }),
 
-/***/ "./src/js/parts/valid.js":
-/*!*******************************!*\
-  !*** ./src/js/parts/valid.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function valid() {
-  let tels = document.querySelectorAll('input[type = "tel"]');
-
-  for (let i = 0; i < tels.length; i++) {
-    tels[i].addEventListener('input', function() {
-      this.value = this.value.replace(/[^\d+]/g, '');
-    });
-  }
-}
-
-module.exports = valid;
-
-/***/ }),
-
 /***/ "./src/js/script.js":
 /*!**************************!*\
   !*** ./src/js/script.js ***!
@@ -467,7 +505,7 @@ window.addEventListener('DOMContentLoaded', function () {
       slider = __webpack_require__(/*! ./parts/slider.js */ "./src/js/parts/slider.js"),
       timer = __webpack_require__(/*! ./parts/timer.js */ "./src/js/parts/timer.js"),
       modal = __webpack_require__(/*! ./parts/modal.js */ "./src/js/parts/modal.js"),
-      valid = __webpack_require__(/*! ./parts/valid.js */ "./src/js/parts/valid.js");
+      mask = __webpack_require__(/*! ./parts/mask.js */ "./src/js/parts/mask.js");
 
   tabs();
   calc();
@@ -475,7 +513,7 @@ window.addEventListener('DOMContentLoaded', function () {
   slider();
   timer();
   modal();
-  valid();
+  mask();
 });
 
 
